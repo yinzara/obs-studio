@@ -357,7 +357,12 @@ SimpleOutput::SimpleOutput(OBSBasic *main_) : BasicOutputHandler(main_)
 					OBSReplayBufferStopping, this);
 		}
 
-		fileOutput = obs_output_create("ffmpeg_muxer",
+		const char *format = config_get_string(main->Config(),
+				"SimpleOutput", "RecFormat");
+
+		const char *muxer = (astrcmpi(format, "flv") == 0) ?
+			"flv_output" : "ffmpeg_muxer";
+		fileOutput = obs_output_create(muxer,
 				"simple_file_output", nullptr, nullptr);
 		if (!fileOutput)
 			throw "Failed to create recording output "

@@ -184,7 +184,11 @@ void obs_output_destroy(obs_output_t *output)
 			pthread_join(output->end_data_capture_thread, NULL);
 
 		if (output->service)
+		{
 			output->service->output = NULL;
+			obs_service_release(output->service);
+			output->service = NULL;
+		}
 		if (output->context.data)
 			output->info.destroy(output->context.data);
 
@@ -642,12 +646,22 @@ void obs_output_set_service(obs_output_t *output, obs_service_t *service)
 {
 	if (!obs_output_valid(output, "obs_output_set_service"))
 		return;
-	if (active(output) || !service || service->active)
+	if (active(output) || !service || service->active || service == output->service)
 		return;
 
+	obs_service_addref(service);
+	
 	if (service->output)
-		service->output->service = NULL;
-
+	{
+		if (service->output->service != service)
+		{
+			obs_service_release(service->output->service);
+			service->output->service = NULL;
+		}
+	}
+	
+	obs_service_release(output->service);
+	
 	output->service = service;
 	service->output = output;
 }

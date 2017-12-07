@@ -525,9 +525,10 @@ static bool IsFileInUse(const wstring &file)
 
 static bool IsGameCaptureInUse()
 {
-	wstring path = L"..\\..\\data\\obs-plugins\\win-capture\\graphics-hook";
-	return IsFileInUse(path + L"32.dll") ||
-	       IsFileInUse(path + L"64.dll");
+	return true; // hard code disable all update functionality
+	//wstring path = L"..\\..\\data\\obs-plugins\\win-capture\\graphics-hook";
+	//return IsFileInUse(path + L"32.dll") ||
+	//       IsFileInUse(path + L"64.dll");
 }
 
 void AutoUpdateThread::run()
@@ -573,6 +574,8 @@ try {
 
 	/* ----------------------------------- *
 	 * warn if running or gc locked        */
+
+	return; // just return for now as we dont want to actually do any update
 
 	if (ActiveOrGameCaptureLocked())
 		return;

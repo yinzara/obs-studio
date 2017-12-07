@@ -2621,7 +2621,7 @@ PublisherAuth(RTMP *r, AVal *description)
             MD5_Final(md5sum_val, &md5ctx);
 
             RTMP_Log(RTMP_LOGDEBUG, "%s, md5(%s%s%s) =>", __FUNCTION__,
-                     salted2, opaque.av_len ? opaque.av_val : "", challenge2);
+                     salted2, opaque.av_len ? opaque.av_val : challenge.av_val, challenge2);
             RTMP_LogHexString(RTMP_LOGDEBUG, md5sum_val, MD5_DIGEST_LENGTH);
 
             b64enc(md5sum_val, MD5_DIGEST_LENGTH, response, RESPONSE_LEN);

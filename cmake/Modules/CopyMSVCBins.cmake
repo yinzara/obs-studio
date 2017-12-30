@@ -143,6 +143,7 @@ if (CMAKE_CONFIGURATION_TYPES MATCHES "Debug")
 		"${Qt5Core_DIR}/../../../bin/Qt5Guid.dll"
 		"${Qt5Core_DIR}/../../../bin/Qt5Widgetsd.dll"
 		"${Qt5Core_DIR}/../../../bin/Qt5WebSocketsd.dll"
+		"${Qt5Core_DIR}/../../../bin/Qt5Qmld.dll"
 		"${Qt5Core_DIR}/../../../bin/Qt5Networkd.dll"
 		"${Qt5Core_DIR}/../../../bin/libGLESv2d.dll"
 		"${Qt5Core_DIR}/../../../bin/libEGLd.dll")
@@ -156,6 +157,7 @@ if (CMAKE_CONFIGURATION_TYPES MATCHES "Rel")
 		"${Qt5Core_DIR}/../../../bin/Qt5Gui.dll"
 		"${Qt5Core_DIR}/../../../bin/Qt5Widgets.dll"
 		"${Qt5Core_DIR}/../../../bin/Qt5WebSockets.dll"
+		"${Qt5Core_DIR}/../../../bin/Qt5Qml.dll"
 		"${Qt5Core_DIR}/../../../bin/Qt5Network.dll"
 		"${Qt5Core_DIR}/../../../bin/libGLESv2.dll"
 		"${Qt5Core_DIR}/../../../bin/libEGL.dll")
